@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"  // 改为 PostgreSQL
   url      = env("DATABASE_URL")
 }
 
@@ -14,7 +14,7 @@ model Category {
   id          String   @id @default(cuid())
   icon        String
   title       String
-  description String   @db.Text
+  description String   // PostgreSQL 中不需要 @db.Text
   rank        Int?
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @default(now()) @map(name: "updated_at")
@@ -26,12 +26,12 @@ model Category {
 model Link {
   id             String   @id @default(cuid())
   icon           String   @default("")
-  url            String   @unique @db.VarChar(191)  // 限制字段长度以避免索引过长
+  url            String   @unique  // PostgreSQL 不需要指定长度
   title          String
-  description    String   @db.Text
+  description    String   // PostgreSQL 中不需要 @db.Text
   rank           Int?
   public         Boolean  @default(true)
-  status         Int      @default(1) @db.TinyInt // 0: 未上架 1: 上架到导航页
+  status         Int      @default(1) // PostgreSQL 不需要 @db.TinyInt
   screenshot_url String   @default("")
   createdAt      DateTime @default(now()) @map(name: "created_at")
   updatedAt      DateTime @default(now()) @map(name: "updated_at")
@@ -44,18 +44,18 @@ model Link {
 
 model Account {
   id                       String   @id @default(cuid())
-  userId                   String   @db.VarChar(100)
-  type                     String   @db.VarChar(30)
-  provider                 String   @db.VarChar(30)
-  providerAccountId        String   @db.VarChar(100)
-  refresh_token            String?  @db.Text
-  access_token             String?  @db.Text
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String?  // PostgreSQL 不需要 @db.Text
+  access_token             String?  // PostgreSQL 不需要 @db.Text
   expires_at               Int?
   refresh_token_expires_in Int?
-  token_type               String?  @db.VarChar(20)
-  scope                    String?  @db.VarChar(50)
-  id_token                 String?  @db.Text
-  session_state            String?  @db.VarChar(50)
+  token_type               String?
+  scope                    String?
+  id_token                 String?  // PostgreSQL 不需要 @db.Text
+  session_state            String?
   createdAt                DateTime @default(now()) @map(name: "created_at")
   updatedAt                DateTime @default(now()) @map(name: "updated_at")
 
@@ -67,8 +67,8 @@ model Account {
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique @db.VarChar(100)
-  userId       String   @db.VarChar(150)
+  sessionToken String   @unique
+  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -77,11 +77,11 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?   @db.VarChar(80)
-  email         String?   @unique @db.VarChar(100)
-  password      String?   @db.VarChar(100)
+  name          String?
+  email         String?   @unique
+  password      String?
   emailVerified DateTime?
-  image         String?   @db.VarChar(150)
+  image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
 
@@ -93,8 +93,8 @@ model User {
 
 model VerificationToken {
   id         Int      @id @default(autoincrement())
-  identifier String   @db.VarChar(100)
-  token      String   @unique @db.VarChar(150)
+  identifier String
+  token      String   @unique
   expires    DateTime
 
   @@unique([identifier, token])
