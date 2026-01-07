@@ -61,7 +61,7 @@ cp .env.example .env
 
 3. sync database table and add some data
 ```sh
-npx prisma db push
+npx prisma@4.14.1 db push
 pnpm run seed
 ```
 
