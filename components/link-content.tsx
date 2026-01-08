@@ -36,7 +36,12 @@ export function LinkItem({ link }: { link: SiteLink | ExportConfig }) {
         </div>
         <div className="ml-auto flex items-center">
           {(link as any).is_crawled && (
-            <a href={`/site-card?url=${link.url}`} target="_blank" rel="noreferrer" className="relative z-10">
+            <a
+              href={`/site-card?url=${link.url}`}
+              target="_blank"
+              rel="noreferrer"
+              className="relative z-10"
+            >
               <Share2 className="size-5" />
             </a>
           )}
