@@ -9,7 +9,11 @@ const nextConfig = {
     ],
   },
   images: {
-    domains: ["cos.codefe.top", "webnav-cdn.codefe.top"],
+    domains: [
+      "cos.codefe.top",
+      "webnav-cdn.codefe.top",
+      "frontend-nav-umber.vercel.app",
+    ],
   },
 }
 
