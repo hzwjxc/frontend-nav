@@ -70,3 +70,15 @@ pnpm run seed
 ```sh
 pnpm dev
 ```
+
+开发文档
+https://zhuanlan.zhihu.com/p/635453001
+
+github地址
+https://github.com/wangfengyuan/frontend-nav
+
+远程数据库使用 supabase 的 PostgreSQL 数据库
+
+vercel 部署步骤
+1. 部署命令：npx prisma@4.14.1 generate && next build
+2. 配置环境变量：.env文件
