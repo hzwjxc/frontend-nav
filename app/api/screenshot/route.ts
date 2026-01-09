@@ -33,7 +33,7 @@ export async function extractWebsiteInfo(url: string) {
         ...chromium.args,
         "--disable-blink-features=AutomationControlled",
       ]
-      launchConfig.executablePath = await chromium.executablePath()
+      launchConfig.executablePath = chromium.executablePath
     }
 
     browser = await puppeteer.launch(launchConfig)
