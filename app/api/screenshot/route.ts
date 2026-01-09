@@ -7,11 +7,10 @@ import urlMetadata from "url-metadata"
 import {
   isDev,
   localExecutablePath,
-  remoteExecutablePath,
   userAgent,
 } from "@/lib/utils"
 
-const chromium = require("@sparticuz/chromium-min")
+const chromium = require("chrome-aws-lambda")
 const puppeteer = require("puppeteer-core")
 
 export const maxDuration = 60
@@ -19,22 +18,29 @@ export const maxDuration = 60
 export async function extractWebsiteInfo(url: string) {
   let browser = null
   try {
-    browser = await puppeteer.launch({
+    const launchConfig: any = {
       ignoreDefaultArgs: ["--enable-automation"],
-      args: isDev
-        ? [
-            "--disable-blink-features=AutomationControlled",
-            "--disable-features=site-per-process",
-            "-disable-site-isolation-trials",
-          ]
-        : [...chromium.args, "--disable-blink-features=AutomationControlled"],
       defaultViewport: { width: 1920, height: 1080 },
-      executablePath: isDev
-        ? localExecutablePath
-        : await chromium.executablePath(remoteExecutablePath),
       headless: isDev ? false : "new",
-      debuggingPort: isDev ? 9222 : undefined,
-    })
+    }
+
+    if (isDev) {
+      launchConfig.args = [
+        "--disable-blink-features=AutomationControlled",
+        "--disable-features=site-per-process",
+        "-disable-site-isolation-trials",
+      ]
+      launchConfig.executablePath = localExecutablePath
+      launchConfig.debuggingPort = 9222
+    } else {
+      launchConfig.args = [
+        ...chromium.args,
+        "--disable-blink-features=AutomationControlled",
+      ]
+      launchConfig.executablePath = await chromium.executablePath()
+    }
+
+    browser = await puppeteer.launch(launchConfig)
 
     const page = await browser.newPage()
     await page.setUserAgent(userAgent)
