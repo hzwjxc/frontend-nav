@@ -5,8 +5,21 @@ const nextConfig = {
     appDir: true,
     serverComponentsExternalPackages: [
       "puppeteer-core",
-      "@sparticuz/chromium-min",
+      "chrome-aws-lambda",
     ],
+  },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.ignoreWarnings = [
+        ...(config.ignoreWarnings || []),
+        { module: /chrome-aws-lambda/ },
+      ]
+    }
+    config.module.rules.push({
+      test: /\.map$/,
+      use: "ignore-loader",
+    })
+    return config
   },
   images: {
     domains: [

@@ -60,8 +60,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       chrome-aws-lambda:
-        specifier: ^10.1.0
-        version: 10.1.0(puppeteer-core@22.11.0)
+        specifier: 9.1.0
+        version: 9.1.0(puppeteer-core@22.11.0)
       class-variance-authority:
         specifier: ^0.4.0
         version: 0.4.0(typescript@4.9.5)
@@ -171,6 +171,9 @@ importers:
       eslint-plugin-tailwindcss:
         specifier: ^3.11.0
         version: 3.17.3(tailwindcss@3.4.4)
+      ignore-loader:
+        specifier: ^0.1.2
+        version: 0.1.2
       postcss:
         specifier: ^8.4.21
         version: 8.4.38
@@ -1642,11 +1645,11 @@ packages:
   chownr@1.1.4:
     resolution: {integrity: sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg==}
 
-  chrome-aws-lambda@10.1.0:
-    resolution: {integrity: sha512-NZQVf+J4kqG4sVhRm3WNmOfzY0OtTSm+S8rg77pwePa9RCYHzhnzRs8YvNI6L9tALIW6RpmefWiPURt3vURXcw==}
+  chrome-aws-lambda@9.1.0:
+    resolution: {integrity: sha512-y6MOarSzL5LmDv8sWUdDe4wHuAAEeWMlCbLwmL6Bj+pBPava37UuEPbWD5YAXyJx6oHoC0efLGqYDi56k4KMUQ==}
     engines: {node: '>= 10.16'}
     peerDependencies:
-      puppeteer-core: ^10.1.0
+      puppeteer-core: ^9.1.0
 
   chromium-bidi@0.5.23:
     resolution: {integrity: sha512-1o/gLU9wDqbN5nL2MtfjykjOuighGXc3/hnWueO1haiEoFgX8h5vbvcA4tgdQfjw1mkZ1OEF4x/+HVeqEX6NoA==}
@@ -2310,6 +2313,9 @@ packages:
 
   ieee754@1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
+
+  ignore-loader@0.1.2:
+    resolution: {integrity: sha512-yOJQEKrNwoYqrWLS4DcnzM7SEQhRKis5mB+LdKKh4cPmGYlLPR0ozRzHV5jmEk2IxptqJNQA5Cc0gw8Fj12bXA==}
 
   ignore@5.3.1:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
@@ -5651,7 +5657,7 @@ snapshots:
 
   chownr@1.1.4: {}
 
-  chrome-aws-lambda@10.1.0(puppeteer-core@22.11.0):
+  chrome-aws-lambda@9.1.0(puppeteer-core@22.11.0):
     dependencies:
       lambdafs: 2.1.1
       puppeteer-core: 22.11.0
@@ -6456,6 +6462,8 @@ snapshots:
   ieee754@1.1.13: {}
 
   ieee754@1.2.1: {}
+
+  ignore-loader@0.1.2: {}
 
   ignore@5.3.1: {}
 

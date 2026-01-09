@@ -4,11 +4,7 @@ import { NextResponse } from "next/server"
 import html2md from "html-to-md"
 import urlMetadata from "url-metadata"
 
-import {
-  isDev,
-  localExecutablePath,
-  userAgent,
-} from "@/lib/utils"
+import { isDev, localExecutablePath, userAgent } from "@/lib/utils"
 
 const chromium = require("chrome-aws-lambda")
 const puppeteer = require("puppeteer-core")
