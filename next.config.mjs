@@ -5,14 +5,14 @@ const nextConfig = {
     appDir: true,
     serverComponentsExternalPackages: [
       "puppeteer-core",
-      "chrome-aws-lambda",
+      "@sparticuz/chromium",
     ],
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.ignoreWarnings = [
         ...(config.ignoreWarnings || []),
-        { module: /chrome-aws-lambda/ },
+        { module: /@sparticuz\/chromium/ },
       ]
     }
     config.module.rules.push({
