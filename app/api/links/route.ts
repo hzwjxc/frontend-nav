@@ -41,7 +41,7 @@ export async function POST(request: Request) {
       data: {
         ...info,
         url,
-        status: 0,
+        status: 1,
         is_crawled: true,
       },
     })

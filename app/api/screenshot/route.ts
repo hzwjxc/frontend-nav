@@ -71,9 +71,12 @@ export async function extractWebsiteInfo(url: string) {
       favicons.find((f: any) => f.rel === "mask_icon" || f.rel === "icon") || {}
     ).href
     const hostname = new URL(url).hostname
-    const favicon = faviconHref.startsWith("http")
-      ? faviconHref
-      : hostname + faviconHref
+    const favicon =
+      faviconHref && faviconHref.startsWith("http")
+        ? faviconHref
+        : faviconHref
+          ? hostname + faviconHref
+          : `https://${hostname}/favicon.ico`
 
     return {
       htmlContent,

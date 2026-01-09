@@ -1,5 +1,6 @@
+"use client"
+
 import Image from "next/image"
-import Link from "next/link"
 import { ExportConfig } from "@/types"
 import { Link as SiteLink } from "@prisma/client"
 import { Share2 } from "lucide-react"
@@ -7,14 +8,19 @@ import { Share2 } from "lucide-react"
 import { CategoryWithLinks } from "@/app/links"
 
 export function LinkItem({ link }: { link: SiteLink | ExportConfig }) {
+  const handleClick = () => {
+    window.open(
+      `${link.url}?utm_source=webnav&utm_medium=referral`,
+      "_blank",
+      "noopener,noreferrer"
+    )
+  }
+
   return (
-    <div className="relative mb-6 flex min-h-[122px] min-w-0 cursor-pointer flex-col break-words rounded-lg border border-gray-200 p-4 shadow-md transition-all hover:-translate-y-1 hover:scale-105 hover:bg-border hover:shadow-lg  xl:mb-0">
-      <a
-        href={`${link.url}?utm_source=webnav&utm_medium=referral`}
-        target="_blank"
-        rel="noreferrer"
-        className="absolute inset-0"
-      />
+    <div
+      className="relative mb-6 flex min-h-[122px] min-w-0 cursor-pointer flex-col break-words rounded-lg border border-gray-200 p-4 shadow-md transition-all hover:-translate-y-1 hover:scale-105 hover:bg-border hover:shadow-lg  xl:mb-0"
+      onClick={handleClick}
+    >
       <div className="relative flex items-center justify-between">
         <div className="flex items-center">
           <div className="mr-3 flex size-10 justify-between overflow-hidden rounded-full">
@@ -38,9 +44,10 @@ export function LinkItem({ link }: { link: SiteLink | ExportConfig }) {
           {(link as any).is_crawled && (
             <a
               href={`/site-card?url=${link.url}`}
-              target="_blank"
-              rel="noreferrer"
               className="relative z-10"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()} // 防止事件冒泡
             >
               <Share2 className="size-5" />
             </a>

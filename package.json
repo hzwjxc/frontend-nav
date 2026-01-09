@@ -15,6 +15,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.965.0",
     "@hookform/resolvers": "^3.1.0",
     "@next-auth/prisma-adapter": "^1.0.6",
     "@next/third-parties": "^14.2.4",
