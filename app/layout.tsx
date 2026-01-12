@@ -4,7 +4,7 @@ import { Metadata } from "next"
 import { GoogleAnalytics } from "@next/third-parties/google"
 
 import { siteConfig } from "@/config/site"
-import { fontSans } from "@/lib/fonts"
+// import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/site-header"
@@ -52,8 +52,8 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         </head>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
+            "min-h-screen bg-background font-sans antialiased"
+            // fontSans.variable
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
